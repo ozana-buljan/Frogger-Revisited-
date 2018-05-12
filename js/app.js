@@ -19,6 +19,21 @@
  */
 
 /* *** ES6 *** */
+
+
+
+//class Game -> from which Enemy and Player inherit shared properties and methods
+class Game {
+    constructor(x, y, image) {
+        this.x = x;
+        this.y = y;
+        this.image = image;
+    }
+    render() {
+        ctx.drawImage(Resources.get(this.image), this.x, this.y);
+    }
+}
+
 // Enemies our player must avoid
 class Enemy {
     constructor() {
@@ -66,7 +81,9 @@ let enemy1 = new Enemy(-100, 140, 'images/enemy-bug.png', 50);
 let enemy2 = new Enemy(-100, 60, 'images/enemy-bug.png', 20);
 let enemy3 = new Enemy(-100, 220, 'images/enemy-bug.png', 30);
 let allEnemies = [enemy1, enemy2, enemy3];
-
+let hearts = document.getElementsByTagName('ul')[0];
+let points = document.getElementById('points');
+let score = 0;
 
 
 // This listens for key presses and sends the keys to your
