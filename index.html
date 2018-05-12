@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Effective JavaScript: Frogger</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Classic Arcade Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ozana_buljan">
+    <meta name="description" content="Udacity FEND Project#4 Arcade Game :: by ozana_buljan">
+
+    <!--Fonts & Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Butterfly+Kids" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
+
+    <!--My CSS-->
+    <link rel="stylesheet" href="css/app.css">
+
 </head>
+
 <body>
+    <!--HEADER-->
+    <header>
+        <img class="game-logo image-responsive" src="images/logo.png">
+        <section id="score-panel">
+            <div class="score">Score: <span class="score-span">0</span></div>
+            <div class="lives"></div>
+            <div class="gems-collected"></div>
+            <div class="level"></div>
+        </section>
+    </header>
+
+
+
+
+    <!--FOOTER-->
+    <footer>
+        <section class="instructions">
+            <a id="instruc-open">How to play</a>
+        </section>
+        <section class="credits">
+            <p>© 2018 Ozana Buljan<span class="foot-cred-span"> -.-Udacity FEND project-.-</span></p>
+        </section>
+    </footer>
+
+    <!--MODALS-->
+    <!--game start modal-->
+    <div id="start-modal" class="start-mod overlay">
+        <img class="game-logo image-responsive" src="images/logo.png">
+        <a id="play" class="button">Play!</a>
+    </div>
+
+    <!--instructions modal-->
+    <div id="instructions-modal" class="overlay hidden">
+        <h2 class="heading">How to Play</h2>
+        <p>Goal is to get on the other side without being struck by an enemy!</p>
+        <p> Press
+            <span>
+                    <i class="fa fa-arrow-circle-up"></i></span>
+            <span><i class="fa fa-arrow-circle-down"></i></span>
+            <span>
+                    <i class="fa fa-arrow-circle-left"></i>
+                    </span>
+            <span><i class="fa fa-arrow-circle-right"></i></span> on your keyboard to move around</p>
+        <p>Good luck!</p>
+        <a id="instruct-close" class="button">All-righty! Let's play!</a>
+    </div>
+    <!--game over modal-->
+    <div id="game-over-modal" class="overlay hidden">
+        <h2>Game Over</h2>
+        <div class="final-score">
+            Final Score: <span>0</span>
+        </div>
+        <a id="replay" class="button">Play Again</a>
+
+    </div>
+
+    <!--SCRIPTS-->
+    <!-- jQuery plugin-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--My Script-->
+    <!--resources-->
     <script src="js/resources.js"></script>
+    <!--app-->
     <script src="js/app.js"></script>
+    <!--engine-->
     <script src="js/engine.js"></script>
 </body>
+
 </html>
