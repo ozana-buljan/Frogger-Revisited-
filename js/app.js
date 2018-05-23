@@ -4,13 +4,9 @@
 const START_X = 202; // X Start-Position of the player,
 const START_Y = 404; // Y Start-Position of the player,
 
-const allEnemies = []; //array to hold all enemies
-const allItems = [];
-
 /* *** *** *** *** DOM elements *** *** *** *** */
 const lives = document.querySelector("#lives");
 const levels = document.querySelector("#level");
-
 
 /* *** *** *** *** start values *** *** *** *** */
 let key = null;
@@ -146,7 +142,7 @@ class Player {
         document.querySelector("#score-water").textContent = this.scoreWater;
         this.x = START_X;
         this.y = START_Y;
-        obstacle.newRound = true;
+        obstacle.newObst = true;
         this.levelUp();
     };
 
@@ -157,7 +153,7 @@ class Player {
         lives.innerHTML = this.life;
         this.x = START_X;
         this.y = START_Y;
-        obstacle.newRound = true;
+        obstacle.newObst = true;
         if (this.life === 0) {
             this.endGame();
         }
@@ -230,45 +226,9 @@ class Player {
 }
 
 
-//HEARTS
-/**
- * Show heart (player's life)
-
-function showHeart() {
-    for (const argument of arguments) {
-        document.querySelector(
-            argument
-        ).innerHTML = `<img src="images/heart.svg" class="coll-img">`;
-    }
-}
-
- * Hide heart (player's life)
-
-function hideHeart() {
-    for (const argument of arguments) {
-        document.querySelector(argument).innerHTML = ``;
-    }
-}
-
-
- * Show needed number of hearts
-
-function showHearts(numberOfLives) {
-    if (numberOfLives == 1) {
-        hideHeart("#heart-2", "#heart-3");
-    } else if (numberOfLives == 2) {
-        hideHeart("#heart-3");
-    } else if (numberOfLives == 3) {
-        showHeart("#heart-1", "#heart-2", "#heart-3");
-    }
-} */
-
-//gems
-
-
-// Collectibles superclass
+/* *** *** *** *** Superclass: Collectibles*** *** *** *** */
+// from which all collectible items inherit properties and methods
 class Collectibles {
-
     constructor() {
         this.width;
         this.height;
@@ -280,22 +240,22 @@ class Collectibles {
         this.sprite;
         this.id;
     }
-    // creating an random position of the gems
-    chance() {
+
+    //Method: collectibles.randomize() ->
+    randomize() {
         this.x = 20 + 101 * (Math.floor(Math.random() * (5 - 0) + 0));
         this.y = 120 + 83 * (Math.floor(Math.random() * (3 - 0) + 0));
     };
 
-    // update the gems, taking the actual time, adding some random time into the object value time_target. When actual time outruns the time_target, method change is fired an changes the position of the fly
-
+    //Method: collectibles.update() -> defined for each subclass - to adjust how often each item appears
     update() {}
 
-    // drawing the gem on the canvas
+    //Method: collectibles.render() -> draws items on canvas
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.width, this.height);
     }
 }
-
+/* *** *** *** Subclass: Collectible Fly *** *** *** */
 class CollFly extends Collectibles {
     constructor() {
         super();
@@ -304,35 +264,35 @@ class CollFly extends Collectibles {
         this.sprite = 'images/coll-fly.svg';
         this.id = "fly";
     }
+
+    //Method: collFly.update() -> changes position of a fly object
+    //updates items by taking current time and adding randomized time value to the time_target
     update() {
         if (this.time_now >= this.time_target) {
-            this.chance();
+            this.randomize();
             this.time_target = Date.now() + Math.floor(Math.random() * (15000 - 3000) + 3000);
         }
         this.time_now = Date.now();
     }
 }
 
-
-// creating a BlueGems class, include the key .display. If the value is false,
-// the method update can create an new blue gem after a random time. If it´s true, the update-method puts the blue gem out of side for a random time.
-
+/* *** *** *** Subclass: Collectible Dragonfly *** *** *** */
 class CollDragonfly extends Collectibles {
     constructor() {
         super();
         this.width = 70;
         this.height = 90;
-        this.chance();
+        this.randomize();
         this.sprite = 'images/coll-dragonfly.svg';
         this.id = "dragonfly";
     }
 
-    // update-method for the blue gem, calculates a random time between 3 and 10 sec if display===false blue gem is put in a visible position, if display===true the blue gem is hidden for 3 to 10 sec from the canvas (-100, -100)
+    //Method: collDragonfly.update() -> changes position of a dragonfly object in a random time (). If the item is not displayed - it makes it visible and vice versa. Should appear less often than fly items.
 
     update() {
         if (this.time_now >= this.time_target) {
             if (this.display === false) {
-                this.chance();
+                this.randomize();
                 this.display = true;
             } else {
                 this.x = -500;
@@ -344,25 +304,22 @@ class CollDragonfly extends Collectibles {
         this.time_now = Date.now();
     }
 }
-
-// creating a OrangeGems class, include the key .display. If the value is false, the method update can create an new blue gem after a random time. If it´s true, the update-method puts the blue gem out of side for a random time.
-
+/* *** *** *** Subclass: Collectible Butterfly *** *** *** */
 class CollButterfly extends Collectibles {
     constructor() {
         super();
         this.width = 90;
         this.height = 90;
-        this.chance();
+        this.randomize();
         this.sprite = 'images/coll-butterfly.svg';
         this.id = "butterfly";
     }
 
-    // update-method for the blue gem, calculates a random time between 3 and 10 sec if display===false blue gem is put in a visible position, if display===true the blue gem is hidden for 3 to 10 sec from the canvas (-100, -100)
-
+    //Method: collButterfly.update() -> changes position of a butterfly object in a random time (). If the item is not displayed - it makes it visible and vice versa. Should appear less often than dragonfly items.
     update() {
         if (this.time_now >= this.time_target) {
             if (this.display === false) {
-                this.chance();
+                this.randomize();
                 this.display = true;
             } else {
                 this.x = -500;
@@ -375,48 +332,42 @@ class CollButterfly extends Collectibles {
     }
 }
 
-// creating an new obstacle-object, including key newRound which is used in method update
+/* *** *** *** Subclass: Obstacle *** *** *** */
 class Obstacle extends Collectibles {
     constructor() {
         super();
         this.width = 100;
         this.height = 100;
-        this.chance();
+        this.randomize();
         this.sprite = "images/obstacle.svg";
-        this.newRound = false;
+        this.newObst = false;
         this.id = "obstacle";
     }
-    //update-method brings the obstacle in another position if the player hits the top of
-    // the canvas and is pushed back into the initial position - to avoid, that the
-    // obstacle is whole the game in the same position
+    //Method: obstacle.update() -> switches position of an obstacle randomly, or whenever the player reaches the water or whenever player loses a life (using newObst)
     update() {
-        if (this.newRound === true) {
-            this.chance();
-            this.newRound = false;
+        if (this.newObst === true) {
+            this.randomize();
+            this.newObst = false;
         }
     }
 }
 
 
-// creating the Heart-object
+/* *** *** *** Subclass: Heart *** *** *** */
 class Heart extends Collectibles {
     constructor() {
         super();
         this.width = 80;
         this.height = 80;
-        this.chance();
+        this.randomize();
         this.sprite = 'images/heart.svg';
         this.id = "heart";
     }
-
-    // update-methods fires after a time between 3 and 10 sec. If heart wasn´t on the
-    // canvas (display===false) heart is pushed to a visible position on the canvas
-    // if heart was visible on the canvas, it is pushed into an invisible area of the
-    // canvas. It reoccur after 3 to 10 sec.
+    //Method: heart.update() -> shows, hides and switches position of a heart item randomly. Should be the most rare occurence.
     update() {
         if (this.time_now >= this.time_target) {
             if (this.display === false) {
-                this.chance();
+                this.randomize();
                 this.display = true;
             } else {
                 this.x = -500;
@@ -430,13 +381,8 @@ class Heart extends Collectibles {
 
 }
 
-
-// function (invoked in Engine, function update) checking if player is hitting a
-// gem by iterating over the allItems-array and comparing the x- and y-values of
-// the elements with the x- and y-values of the player. If hitting fly, 10 point
-// is added to player.score, if hitting blue, 3 Points are added.
-// when score === 10, the method player.endGame() is ending the game
-
+//Function: collisionItems() -> checks if player has collected the item by iterating over the allItems array and comparing x and y  positions of player and the item. Collecting fly -> adds 10 points to score, dragonfly-> 20 points, butterfly -> 30 points, and heart -> 5 points. All items are being tracked separately too.
+//invoked in Engine.js -> updateEntities();
 function collisionItems() {
     for (var i = 0; i < allItems.length; i++) {
         if (allItems[i].y === player.y + 48 && allItems[i].x === player.x + 20) {
@@ -473,30 +419,37 @@ function collisionItems() {
             allItems[i].update();
         }
     }
+
 };
 
+/* *** *** *** *** *** OBJECTS *** *** *** *** *** */
 
-// Creating new enemy-objects with the object-creator-functions
-let enemy1 = new Enemy(60);
-let enemy2 = new Enemy(143);
-let enemy3 = new Enemy(226);
+// Creating new enemy objects and an array to hold them
+let enemyRow1 = new Enemy(60);
+let enemyRow2 = new Enemy(143);
+let enemyRow3 = new Enemy(226);
 
-// Creating all the other objects with object-creator
+const allEnemies = []; //array to hold all enemies
+allEnemies.push(enemyRow1, enemyRow2, enemyRow3); //push enemises to an array
+
+
+// Creating player
 let player = new Player(START_X, START_Y);
+
+// Creating colectable items and array to hold them
 let flies = new CollFly();
 let dragonfly = new CollDragonfly();
 let butterfly = new CollButterfly();
 let obstacle = new Obstacle();
 let heart = new Heart();
+const allItems = []; //array to hold all collectibles
+allItems.push(flies, dragonfly, butterfly, heart); // push items to an array
 
-//Creating an array of all enemies to iterate over it in the function collision
-allEnemies.push(enemy1, enemy2, enemy3);
 
-// Creating an array of all gems and the heart items  to iterate over it in the function collisionItems
-allItems.push(flies, dragonfly, butterfly, heart);
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+
+/* *** *** *** *** *** EVENT LISTENERS *** *** *** *** *** */
+// Listens for key presses and sends the keys to player.handleInput() method
 document.addEventListener('keyup', function (e) {
     let allowedKeys = {
         37: 'left',
@@ -507,9 +460,10 @@ document.addEventListener('keyup', function (e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
-//MODALS
-
+/* *** *** *** *** *** MODALS *** *** *** *** *** */
+//Piece of Materialize.css jQuery code to trigger the modals
 $(document).ready(function () {
     $('.modal').modal();
 });
+
+/*-------------THE ᕕ( ᐛ )ᕗ END-----------------*/

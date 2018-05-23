@@ -95,7 +95,6 @@ let Engine = (function (global) {
      */
 
     function updateEntities(dt) {
-
         flies.update();
         dragonfly.update();
         butterfly.update();
@@ -167,17 +166,10 @@ let Engine = (function (global) {
         allEnemies.forEach(function (enemy) {
             enemy.render();
         });
-
         player.render();
 
 
     }
-
-
-
-
-
-
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
@@ -201,18 +193,6 @@ let Engine = (function (global) {
         'images/coll-butterfly.svg',
         'images/obstacle.svg',
         'images/heart.svg',
-        'images/grass-block.png',
-        'images/enemy-bug.png',
-        'images/char-boy.png',
-        'images/char-cat-girl.png',
-        'images/char-horn-girl.png',
-        'images/char-pink-girl.png',
-        'images/char-princess-girl.png',
-        'images/Gem Green.png',
-        'images/Gem Blue.png',
-        'images/Gem Orange.png',
-
-        'images/Rock.png'
     ]);
     Resources.onReady(init);
 

@@ -13,14 +13,24 @@ body {
     padding: 0;
 }
 
+h4,
+p,
+span {
+    font-size: 1em;
+}
 
 /***--- --- --- HEADER --- --- ---***/
+
+header {
+    height: 7.5vh;
+}
 
 /***--- --- --- MAIN --- --- ---***/
 
 /*--SCORE PANEL--*/
 
 .score-panel {}
+
 
 .collectibles {
     display: grid;
@@ -31,33 +41,41 @@ body {
 .total {
     grid-column: 1/4;
     grid-row: 1;
+    height: 10vh;
 }
 
 .fly {
     grid-column: 1;
     grid-row: 2;
+    height: 10vh;
 }
 
 .dragonfly {
     grid-column: 2;
     grid-row: 2;
+    height: 10vh;
 }
 
 .butterfly {
     grid-column: 3;
     grid-row: 2;
+    height: 10vh;
 }
 
+.scores,
 .life {
     display: grid;
     grid-template-rows: 1fr 1fr;
+    height: 20vh;
 }
 
+.scores-board,
 .life-no {
     grid-row: 1;
 }
 
-.life-hearts {
+.scores-water,
+.levels {
     grid-row: 2;
 }
 
@@ -66,11 +84,19 @@ body {
 }
 
 .coll-img {
-    height: 7vh;
+    height: 5em;
 }
 
+#score-water,
+#lives,
 .numbers {
     font-weight: 700;
+    font-size: 2em;
+    line-height: 0.5em;
+}
+
+.heart {
+    display: inline-block;
 }
 
 /*--GAME--*/
@@ -88,7 +114,20 @@ footer {
 
 /***--- --- --- MODALS --- --- ---***/
 
-.modal {}
+..modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;
+    max-height: 70%;
+    width: 55%;
+    margin: 10vh auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
+}
 
 .modal-content > .coll-img {
     height: 5vh;

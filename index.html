@@ -74,7 +74,7 @@
                 <p><img src="images/coll-fly.svg" class="coll-img" alt="fly">Each time frog collects a fly, you get <span class="numbers"> 10 points</span>!</p>
                 <p><img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly">Each time frog collects a dragonfly, <span class="numbers"> 20 points</span></p>
                 <p><img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly">Each time frog collects a butterfly, <span class="numbers">30 points</span>!</p>
-                <p><img src="images/heart.svg" alt="heart-life" class="coll-img">Each time frog collects a heart, you get <span class="numbers"> an extra life plus 5 points</span>!</p>
+                <p><img src="images/heart.svg" alt="heart-life" class="heart">Each time frog collects a heart, you get <span class="numbers"> an extra life plus 5 points</span>!</p>
                 <hr>
                 <h4>Moving around</h4>
                 <p> Press
@@ -86,6 +86,10 @@
                     </span>
                     <span><i class="fa fa-arrow-circle-right"></i></span> on your keyboard to move around</p>
                 <p><img src="images/obstacle.svg" alt="obstacle" class="coll-img"> Be wary of the obstacles! You shall not pass them!</p>
+                <hr>
+                <h4>Level UP</h4>
+                <p>Your progress is being tracked trough levels. The more more points you collect - heigher you go!</p>
+                <hr>
                 <h3>Good luck!</h3>
         </div>
         <div class="modal-footer">
@@ -113,17 +117,17 @@
 
 
         <section class="score-panel row valign-wrapper center-align">
-            <div class="col s3">
-                <h4>Level</h4>
-                <p class="numbers" id="level">0</p>
+            <div class="scores col s4">
+                <div class="scores-board">
+                    <h4>Score: </h4>
+                    <p class="numbers" id="score">0</p>
+                </div>
+                <div class="scores-water">
+                    <p>Water reached </p>
+                    <p><span class="numbers" id="score-water">0</span> times</p>
+                </div>
             </div>
-            <div class="col s3">
-                <h4>Score: </h4>
-                <p class="numbers" id="score">0</p>
-                <p>Water reached </p>
-                <p><span class="numbers" id="score-water">0</span> times</p>
-            </div>
-            <div class="collectibles col s3">
+            <div class="collectibles col s4">
                 <div class="total">
                     <h4>Total items: </h4>
                     <p class="numbers" id="collected">0</p>
@@ -141,15 +145,17 @@
                     <p class="numbers" id="butterfly-coll">0</p>
                 </div>
             </div>
-            <div class="life col s3">
+            <div class="life col s4">
                 <div class="life-no">
                     <h4>Lives: </h4>
-                    <p class="numbers" id="lives">3</p>
+                    <img src="images/heart.svg" alt="heart-life" class="heart">
+                    <p>X
+                        <span class="numbers" id="lives">3</span>
+                    </p>
                 </div>
-                <div class="life-hearts">
-                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart1"></span>
-                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart2"></span>
-                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart3"></span>
+                <div class="levels">
+                    <h4>Level</h4>
+                    <p class="numbers" id="level">0</p>
                 </div>
             </div>
         </section>
