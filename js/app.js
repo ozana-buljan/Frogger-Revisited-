@@ -17,7 +17,7 @@ let key = null;
 
 /* *** *** *** *** *** CLASSES *** *** *** *** *** */
 /* *** *** *** *** Class: Enemy *** *** *** *** */
-// class ENEMY -> from which enemies derive their properties and methods creating the Enemies-object, which our player must avoid
+// class ENEMY -> from which enemies derive their properties and methods
 //enemies are later created and placed in allEnemies array (below classes section)
 // Enemy's speed and stating points on x-axis are randomized in order for them to move non-synchronously
 
@@ -30,10 +30,8 @@ class Enemy {
         this.id;
     }
 
-    // Update the enemy's position
-    // Parameter: dt, a time delta between ticks
-    // new calculation of the random speed of the enemy
-    //each time enemy hits the right edge of canvas, it returns it to -100 x-position
+    // Method: enemy.update() -> updates the enemy's position by taking parameter(dt), a time delta between ticks and calculating new random speed of the enemy each time it's called.
+    //Also regulates that enemy stays on screen-> each time enemy hits the right edge of canvas, it returns it to -100 x-position
     update(dt) {
         if (this.x >= 505) {
             this.speed = Math.floor((Math.random() * (8 - 3) + 3));
@@ -43,14 +41,13 @@ class Enemy {
         }
     }
 
-    // Draw the enemy on the screen
+    // Method: enemy.render() -> draws the enemy on the screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-    //function (invoked in Engine, function update) that checks if player and enemy are colliding by iterating over the
-    //allItems-array and comparing the x- and y-values of every array element with the
-    // x- and y-values of the player
-    // if they collide, the method Player.prototype.collide is invoked.
+
+    //Method: enemy.collision() -> checks if player and enemy are colliding by iterating over the allItems array and comparing the x- and y-values of every array element with the x- and y-values of the player. If they do collide, the method player.collide is invoked.
+    //invoked in Engine.js -> function updateEntities();
     collision() {
         if (this.y === (player.y - 12) && this.x > player.x - 75 && this.x < player.x + 70) {
             player.collide();
@@ -59,10 +56,10 @@ class Enemy {
 }
 /* *** *** *** *** Class: Player *** *** *** *** */
 
-
-// the object creator with different values, including the moves
-// that value stops the possibility to move the player with your keys
-// while the player-request-window is in charge
+// class PLAYER -> from which player object derives its properties and methods
+//c0nstructor takes 2 arguments: x and y coordinate, and then uses them to move player on the canvas (rendered as animation)
+//player moves via key inputs (allowed keys: UP, DOWN, LEFT, RIGHT) - without keys player cannot move. At the start of the game, while modal is on - keys are disabled and enabled when the game starts
+//player also keeps track of collectible items (fly, dragonfly, butterfly and hearts), levels, score, as well as how many times player reached the other side
 class Player {
     constructor(x, y) {
         this.x = x;
@@ -82,23 +79,19 @@ class Player {
     }
 
 
-    // drawing the Player on the screen
+    // Method: player.render() -> drawing the Player on the screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-    // taking in the pressed key and write it into the global key-variable
+    // Method: player.handleInput() -> takes the key pressed as an argument and saves it into global key variable
     handleInput(keycode) {
         if (keycode !== undefined && player.moves === true) {
             key = keycode;
         }
     };
 
-    // adding the update-methods, which uses the content of the global key-variable
-    // for each key-value there is a movement in px on the x- oder the y-axis.
-    // those values are committed to the player object. Checks with if-loops, if a
-    // key was pressed and if the player is running against a obstacle by comparing the
-    // x- and y-values of player and obstacle
+    //Method: player.update() -> uses global key variable's value and sets the movement. Each of allowed keys (UP, DOWN, LEFT, RIGHT) moves the player on the x or y axis. If loops have condition which checks if key was pressed and if the player is running against the obstacle by comparing the x and y values of the player and the obstacle
     update() {
         if (key !== null) {
             switch (key) {
@@ -145,8 +138,7 @@ class Player {
         }
     };
 
-    // method invoked by hitting the upper edge of the canvas - committing plus one to the player object, printing the new score on the score-board
-    // setting back the player to the initial position
+    //Method: player.reachWater() -> invoked when player reaches the other side of canvas; updates score, reaching water score, level and returns player to a starting position
     reachWater() {
         this.score += 10;
         document.querySelector("#score").textContent = this.score;
@@ -158,21 +150,19 @@ class Player {
         this.levelUp();
     };
 
-    // if in the method Enemy.collision a collision between Enemy and Player is
-    // detetected, the method Player.prototype.collide is invoked.
-    // the method sets player.life -1 and prints the new life-value
-    // on the score-board. If life-value reaches 0, the method player.endGame is invoked
-    // and the game is over.
+    //Method: player.collide() ->  invoked when enemy.collision() happens. Removes a life from the palyer and returns player to a starting position, updating obsacles. If lives reach 0, the method player.endGame is invoked and the game is over.
 
     collide() {
         this.life -= 1;
         lives.innerHTML = this.life;
         this.x = START_X;
         this.y = START_Y;
+        obstacle.newRound = true;
         if (this.life === 0) {
             this.endGame();
         }
     };
+    //Method: player.levelUp() ->  for each interval in score (50-100-250-500-1000-2500-5000) sets the level and updates the score-panel
 
     levelUp() {
         if (this.score <= 50) {
@@ -193,57 +183,50 @@ class Player {
             document.querySelector("#level").textContent = 7;
         }
     }
-
-    // method invoked by ending the game through collecting 10 Points (win) oder
-    // loosing all your lifes (loose). Confirm-Window shows the result.
-    // invoking the function start, which is identical with function init in the Engine
+    //Method: player.endGame() ->  invoked when player loses all his lives; triggers a game over modal
     endGame() {
         setTimeout(function () {
             confirm("Sorry, you loose. Try it again!");
+            player.reset();
             start();
         }, 500);
     }
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    // Function to call the Choose-your-Player-window before the Game starts,
-    // to deliver the right player-image into the Player-object
-    // and to hide the Choose-your-Player-window after choosing a player
+    //Method: player.reset() ->  resets all the game stats and progress; triggers start game modal
+    //Called in Engine.js -> within init() method
     reset() {
-        player.life = 3;
-        player.collected = 0;
-        player.level = 0;
-        player.score = 0;
-        player.scoreWater = 0;
-        player.collectedFly = 0;
-        player.collectedDragonfly = 0;
-        player.collectedButterfly = 0;
-        document.querySelector("#lives").innerHTML = player.life;
-        document.querySelector("#collected").innerHTML = player.collected;
-        document.querySelector("#fly-coll").innerHTML = player.collectedFly;
-        document.querySelector("#dragonfly-coll").innerHTML = player.collectedDragonfly;
-        document.querySelector("#butterfly-coll").innerHTML = player.collectedButterfly;
-        document.querySelector("#score").innerHTML = player.score;
-        document.querySelector("#score-water").innerHTML = player.scoreWater;
-        document.querySelector(".score-panel").style.display = "none";
-        //making the request-panel visible
-        document.querySelector("#start-modal").style.display = "block";
-        const button = document.querySelector("#start-game");
-
-        function hideWindow() {
-            document.querySelector("#start-modal").style.display = "none";
-            document.querySelector(".score-panel").style.display = "block";
-            choosePlayerImage();
-        }
-
-        function choosePlayerImage() {
-            player.sprite = document.formular.player.value;
-            player.moves = true;
-        }
-        button.addEventListener("click", hideWindow);
+        this.life = 3;
+        this.collected = 0;
+        this.level = 0;
+        this.score = 0;
+        this.scoreWater = 0;
+        this.collectedFly = 0;
+        this.collectedDragonfly = 0;
+        this.collectedButterfly = 0;
+        document.querySelector("#lives").innerHTML = this.life;
+        document.querySelector("#collected").innerHTML = this.collected;
+        document.querySelector("#fly-coll").innerHTML = this.collectedFly;
+        document.querySelector("#dragonfly-coll").innerHTML = this.collectedDragonfly;
+        document.querySelector("#butterfly-coll").innerHTML = this.collectedButterfly;
+        document.querySelector("#score").innerHTML = this.score;
+        document.querySelector("#score-water").innerHTML = this.scoreWater;
+        player.startModalShow();
     }
-
+    //Method: player.startModalShow() ->  opens start modal
+    startModalShow() {
+        document.querySelector("#start-modal").style.display = "block";
+        const startBtn = document.querySelector("#start-game");
+        startBtn.addEventListener("click", player.startModalHide);
+    }
+    //Method: player.startModalHide() ->  closes start modal
+    startModalHide() {
+        document.querySelector("#start-modal").style.display = "none";
+        player.choosePlayer();
+    }
+    //Method: player.choosePlayer() ->  takes value of chosen radio button in for and adjustes the image of chosen player
+    choosePlayer() {
+        player.sprite = document.formular.player.value;
+        player.moves = true;
+    }
 }
 
 
