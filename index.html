@@ -3,95 +3,183 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Classic Arcade Game</title>
+    <title>Frogger Revisited</title>
+    <link rel="shortcut icon" type="images/frogger-logo.ico" href="images/frogger-logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ozana_buljan">
-    <meta name="description" content="Udacity FEND Project#4 Arcade Game :: by ozana_buljan">
-
+    <meta name="description" content="Udacity FEND Project#4 Arcade Game Frogger :: by ozana_buljan">
     <!--Fonts & Icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Butterfly+Kids" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
-
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <!--My CSS-->
-    <link rel="stylesheet" href="css/app.css">
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <!--HEADER-->
-    <header>
-        <img class="game-logo image-responsive" src="images/logo.png">
-        <section id="score-panel">
-            <div class="score">Score: <span class="score-span">0</span></div>
-            <div class="lives">
-                <ul>
-                    <li><img src="images/Heart.png" alt="heart"></li>
-                    <li><img src="images/Heart.png" alt="heart"></li>
-                    <li><img src="images/Heart.png" alt="heart"></li>
-                </ul>
-            </div>
-            <div class="gems-collected"></div>
-            <div class="level">Level: <span class="level-span">0</span></div>
-        </section>
-    </header>
-
-
-
-
-    <!--FOOTER-->
-    <footer>
-        <section class="instructions">
-            <a id="instruc-open">How to play</a>
-        </section>
-        <section class="credits">
-            <p>© 2018 Ozana Buljan<span class="foot-cred-span"> -.-Udacity FEND project-.-</span></p>
-        </section>
-    </footer>
 
     <!--MODALS-->
-    <!--game start modal-->
-    <div id="start-modal" class="start-mod overlay">
-        <img class="game-logo image-responsive" src="images/logo.png">
-        <a id="play" class="button">Play!</a>
+    <!--start game modal-->
+    <div id="start-modal" class="modal valign-wrapper center-align">
+        <div class="modal-content valign-wrapper center-align row">
+            <img src="images/frogger-logo-extended.svg" class="logo-img" alt="frogger game logo">
+            <form id="form" name="formular" class="row">
+                <h2 class="valign-wrapper center-align col s12">Choose your Frog</h2>
+                <div class="row">
+                    <div class="player col s3">
+                        <img class="choosePlayer" src="images/frog-green.svg" alt="green frog player">
+                        <br>
+                        <input class="with-gap" type="radio" id="frog-gree" name="player" value="images/frog-green.svg" checked="checked">
+                        <label for="cb">Frog Vulgaris</label>
+                    </div>
+                    <div class="player col s3">
+                        <img class="choosePlayer" src="images/frog-purple.svg" alt="Purple frog with yellow spots">
+                        <br>
+                        <input class="with-gap" type="radio" id="frog-purple" name="player" value="images/frog-purple.svg">
+                        <label for="ccg">Purple Arrow Frog</label>
+                    </div>
+                    <div class="player col s3">
+                        <img class="choosePlayer" src="images/frog-blue.svg" alt="Blue frog player">
+                        <br>
+                        <input class="with-gap" type="radio" id="frog-blue" name="player" value="images/frog-blue.svg">
+                        <label for="chg">Blue Poison Dart Frog</label>
+                    </div>
+                    <div class="player col s3">
+                        <img class="choosePlayer" src="images/frog-red.svg" alt="Strawberry frog player">
+                        <br>
+                        <input class="with-gap" type="radio" id="frog-red" name="player" value="images/frog-red.svg">
+                        <label for="chg">Strawberry Frog</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer center-align">
+            <button id="start-game" class="waves-effect waves-light btn">Play!</button>
+
+            <button class="waves-effect waves-light btn modal-trigger" href="#modal-inst">How to play</button>
+
+        </div>
     </div>
 
     <!--instructions modal-->
-    <div id="instructions-modal" class="overlay hidden">
-        <h2 class="heading">How to Play</h2>
-        <p>Goal is to get on the other side without being struck by an enemy!</p>
-        <p> Press
-            <span>
+    <div id="modal-inst" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h3 class="valign-wrapper center-align">How to Play</h3>
+            <p>Goal is to collect as much points as you can!
+                <hr>
+                <h4>Getting points</h4>
+                <p>Each time frog reaches the water across the street without being struck by an enemy you get<span class="numbers"> 10 points</span>!</p>
+                <p><img src="images/coll-fly.svg" class="coll-img" alt="fly">Each time frog collects a fly, you get <span class="numbers"> 10 points</span>!</p>
+                <p><img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly">Each time frog collects a dragonfly, <span class="numbers"> 20 points</span></p>
+                <p><img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly">Each time frog collects a butterfly, <span class="numbers">30 points</span>!</p>
+                <p><img src="images/heart.svg" alt="heart-life" class="coll-img">Each time frog collects a heart, you get <span class="numbers"> an extra life plus 5 points</span>!</p>
+                <hr>
+                <h4>Moving around</h4>
+                <p> Press
+                    <span>
                     <i class="fa fa-arrow-circle-up"></i></span>
-            <span><i class="fa fa-arrow-circle-down"></i></span>
-            <span>
+                    <span><i class="fa fa-arrow-circle-down"></i></span>
+                    <span>
                     <i class="fa fa-arrow-circle-left"></i>
                     </span>
-            <span><i class="fa fa-arrow-circle-right"></i></span> on your keyboard to move around</p>
-        <p>Good luck!</p>
-        <a id="instruct-close" class="button">All-righty! Let's play!</a>
-    </div>
-    <!--game over modal-->
-    <div id="game-over-modal" class="overlay hidden">
-        <h2>Game Over</h2>
-        <div class="final-score">
-            Final Score: <span>0</span>
+                    <span><i class="fa fa-arrow-circle-right"></i></span> on your keyboard to move around</p>
+                <p><img src="images/obstacle.svg" alt="obstacle" class="coll-img"> Be wary of the obstacles! You shall not pass them!</p>
+                <h3>Good luck!</h3>
         </div>
-        <a id="replay" class="button">Play Again</a>
-
+        <div class="modal-footer">
+            <button href="#!" class="modal-close waves-effect waves-green btn-flat">Okay! Let's play!</button>
+        </div>
     </div>
 
+    <!--game over modal-->
+    <div id="modal-gameover" class="modal">
+        <div class="modal-content">
+            <h2>GAME OVER!</h2>
+        </div>
+        <div class="modal-footer">
+            <button id="start-game" class="waves-effect waves-light btn">Play!</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!--HEADER-->
+        <header class="row valign-wrapper center-align">
+            <img src="images/frogger-logo.svg" class="logo-img col s3" alt="frogger game logo">
+            <h2 class="col s9 right-align">Frogger</h2>
+        </header>
+
+
+        <section class="score-panel row valign-wrapper center-align">
+            <div class="col s3">
+                <h4>Level</h4>
+                <p class="numbers" id="level">0</p>
+            </div>
+            <div class="col s3">
+                <h4>Score: </h4>
+                <p class="numbers" id="score">0</p>
+                <p>Water reached </p>
+                <p><span class="numbers" id="score-water">0</span> times</p>
+            </div>
+            <div class="collectibles col s3">
+                <div class="total">
+                    <h4>Total items: </h4>
+                    <p class="numbers" id="collected">0</p>
+                </div>
+                <div class="fly">
+                    <img src="images/coll-fly.svg" class="coll-img" alt="fly">
+                    <p class="numbers" id="fly-coll">0</p>
+                </div>
+                <div class="dragonfly">
+                    <img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly">
+                    <p class="numbers" id="dragonfly-coll">0</p>
+                </div>
+                <div class="butterfly">
+                    <img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly">
+                    <p class="numbers" id="butterfly-coll">0</p>
+                </div>
+            </div>
+            <div class="life col s3">
+                <div class="life-no">
+                    <h4>Lives: </h4>
+                    <p class="numbers" id="lives">3</p>
+                </div>
+                <div class="life-hearts">
+                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart1"></span>
+                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart2"></span>
+                    <span><img src="images/heart.svg" alt="heart-life" class="coll-img heart3"></span>
+                </div>
+            </div>
+        </section>
+
+        <!--GAME-->
+        <div id="game" class="valign-wrapper center-align"></div>
+
+        <!--FOOTER-->
+        <footer class="row">
+            <section class="credits col s9 center-align">
+                <p>© 2018 <a href="https://github.com/ozana-buljan">Ozana Buljan</a><span class="foot-cred-span"> -.-Udacity FEND project-.-</span></p>
+            </section>
+            <section class="instructions col s3">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal-inst">How to play</a>
+            </section>
+        </footer>
+
+    </div>
     <!--SCRIPTS-->
     <!-- jQuery plugin-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript MaterializeCSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
-    <!--My Script-->
-    <!--resources-->
+    <!-- My script -->
+    <!-- Resources -->
     <script src="js/resources.js"></script>
-    <!--app-->
+    <!-- App -->
     <script src="js/app.js"></script>
-    <!--engine-->
+    <!-- Engine -->
     <script src="js/engine.js"></script>
 </body>
 

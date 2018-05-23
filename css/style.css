@@ -4,26 +4,107 @@
 
 /*--GENERAL--*/
 
+html,
 body {
-    text-align: center;
-    height: 100vh;
+
     width: 100vw;
+    height: 100vh;
     margin: 0 auto;
     padding: 0;
 }
 
+
 /***--- --- --- HEADER --- --- ---***/
+
+/***--- --- --- MAIN --- --- ---***/
+
+/*--SCORE PANEL--*/
+
+.score-panel {}
+
+.collectibles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+}
+
+.total {
+    grid-column: 1/4;
+    grid-row: 1;
+}
+
+.fly {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.dragonfly {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.butterfly {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.life {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.life-no {
+    grid-row: 1;
+}
+
+.life-hearts {
+    grid-row: 2;
+}
+
+.logo-img {
+    height: 10vh;
+}
+
+.coll-img {
+    height: 7vh;
+}
+
+.numbers {
+    font-weight: 700;
+}
+
+/*--GAME--*/
+
+canvas {
+    display: block !important;
+    margin: 0 auto;
+}
 
 /***--- --- --- FOOTER --- --- ---***/
 
+footer {
+    height: 5vh;
+}
+
 /***--- --- --- MODALS --- --- ---***/
 
-/***--- --- --- RESPONSIVENESS --- --- ---***/
+.modal {}
 
-/***--- --- PHONE --- ---***/
+.modal-content > .coll-img {
+    height: 5vh;
+}
 
-/***--- --- TABLET --- ---***/
+/*--START GAME MODAL--*/
 
-/***--- --- DESKTOP --- ---***/
+[type="radio"]:not(:checked),
+[type="radio"]:checked,
+[type="checkbox"],
+[type="radio"] {
+    position: relative !important;
+    opacity: 100 !important;
+    pointer-events: visible !important;
+}
+
+
 
 /*-------------THE ᕕ( ᐛ )ᕗ END-----------------*/

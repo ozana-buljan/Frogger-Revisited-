@@ -9,24 +9,27 @@
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
  *
- * This engine makes the canvas' context (ctx) object globally available to make 
- * writing app.js a little simpler to work with.
+ * This engine is available globally via the Engine variable and it also makes
+ * the canvas' context (ctx) object globally available to make writing app.js
+ * a little simpler to work with.
  */
-
-var Engine = (function(global) {
+let Engine = (function (global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
      */
-    var doc = global.document,
+    let doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    window.start = init;
+
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    const gameCanvas = document.querySelector("#game");
+    gameCanvas.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -44,7 +47,7 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
-        update(dt);
+        update(dt, now);
         render();
 
         /* Set our lastTime variable which is used to determine the time delta
@@ -63,7 +66,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
+        player.reset();
         lastTime = Date.now();
         main();
     }
@@ -78,8 +81,9 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
+
         updateEntities(dt);
-        // checkCollisions();
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -89,11 +93,20 @@ var Engine = (function(global) {
      * the data/properties related to the object. Do your drawing in your
      * render methods.
      */
+
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+
+        flies.update();
+        dragonfly.update();
+        butterfly.update();
+        heart.update();
+        obstacle.update();
+        collisionItems();
+        allEnemies.forEach(function (enemy) {
             enemy.update(dt);
-        });
-        player.update();
+            player.update();
+            enemy.collision();
+        })
     }
 
     /* This function initially draws the "game level", it will then call
@@ -106,20 +119,17 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
-        var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+        let rowImages = [
+                'images/row-one.svg', // Top row is water
+                'images/row-two.svg', // Row 1 of 3 of road
+                'images/row-three.svg', // Row 2 of 3 of road
+                'images/row-four.svg', // Row 3 of 3 of road
+                'images/row-five.svg', // Row 1 of 2 of grass
+                'images/row-six.svg', // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
             row, col;
-        
-        // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -149,20 +159,25 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
+        flies.render();
+        dragonfly.render();
+        butterfly.render();
+        obstacle.render();
+        heart.render();
+        allEnemies.forEach(function (enemy) {
             enemy.render();
         });
 
         player.render();
+
+
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    function reset() {
-        // noop
-    }
+
+
+
+
+
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
@@ -170,10 +185,34 @@ var Engine = (function(global) {
      */
     Resources.load([
         'images/stone-block.png',
-        'images/water-block.png',
+        'images/row-one.svg',
+        'images/row-two.svg',
+        'images/row-three.svg',
+        'images/row-four.svg',
+        'images/row-five.svg',
+        'images/row-six.svg',
+        'images/frog-blue.svg',
+        'images/frog-green.svg',
+         'images/frog-purple.svg',
+         'images/frog-red.svg',
+        'images/enemy-car.svg',
+        'images/coll-fly.svg',
+        'images/coll-dragonfly.svg',
+        'images/coll-butterfly.svg',
+        'images/obstacle.svg',
+        'images/heart.svg',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Gem Green.png',
+        'images/Gem Blue.png',
+        'images/Gem Orange.png',
+
+        'images/Rock.png'
     ]);
     Resources.onReady(init);
 
