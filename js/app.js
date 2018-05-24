@@ -7,6 +7,8 @@ const START_Y = 404; // Y Start-Position of the player,
 /* *** *** *** *** DOM elements *** *** *** *** */
 const lives = document.querySelector("#lives");
 const levels = document.querySelector("#level");
+const collectedItems = document.querySelector("#collected");
+
 
 /* *** *** *** *** start values *** *** *** *** */
 let key = null;
@@ -162,21 +164,19 @@ class Player {
 
     levelUp() {
         if (this.score <= 50) {
-            document.querySelector("#level").textContent = 0;
+            levels.textContent = "EGG";
         } else if (this.score > 50 && this.score <= 100) {
-            document.querySelector("#level").textContent = 1;
+            levels.textContent = "TADPOLE";
         } else if (this.score > 100 && this.score <= 250) {
-            document.querySelector("#level").textContent = 2;
+            levels.textContent = "FROGLET";
         } else if (this.score > 250 && this.score <= 500) {
-            document.querySelector("#level").textContent = 3;
+            levels.textContent = "FROGLLECTOR";
         } else if (this.score > 500 && this.score <= 1000) {
-            document.querySelector("#level").textContent = 4;
-        } else if (this.score > 1000 && this.score <= 2500) {
-            document.querySelector("#level").textContent = 5;
-        } else if (this.score > 2500 && this.score <= 5000) {
-            document.querySelector("#level").textContent = 6;
+            levels.textContent = "FROGGERCORE";
+        } else if (this.score > 1000 && this.score <= 5000) {
+            levels.textContent = "HARDCORE FROG";
         } else if (this.score > 5000) {
-            document.querySelector("#level").textContent = 7;
+            levels.textContent = "PRO";
         }
     }
     //Method: player.endGame() ->  invoked when player loses all his lives; triggers a game over modal
@@ -198,8 +198,8 @@ class Player {
         this.collectedFly = 0;
         this.collectedDragonfly = 0;
         this.collectedButterfly = 0;
-        document.querySelector("#lives").innerHTML = this.life;
-        document.querySelector("#collected").innerHTML = this.collected;
+        lives.innerHTML = this.life;
+        collectedItems.innerHTML = this.collected;
         document.querySelector("#fly-coll").innerHTML = this.collectedFly;
         document.querySelector("#dragonfly-coll").innerHTML = this.collectedDragonfly;
         document.querySelector("#butterfly-coll").innerHTML = this.collectedButterfly;
@@ -408,7 +408,7 @@ function collisionItems() {
                     player.score += 5;
                     break;
             }
-            document.querySelector("#collected").innerHTML = player.collected;
+            collectedItems.innerHTML = player.collected;
             document.querySelector("#fly-coll").innerHTML = player.collectedFly;
             document.querySelector("#dragonfly-coll").innerHTML = player.collectedDragonfly;
             document.querySelector("#butterfly-coll").innerHTML = player.collectedButterfly;
