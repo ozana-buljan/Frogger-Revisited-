@@ -66,17 +66,17 @@
     <!--instructions modal-->
     <div id="modal-inst" class="modal bottom-sheet">
         <div class="modal-content">
-            <h3 class="valign-wrapper center-align">How to Play</h3>
+            <h2 class="valign-wrapper center-align">How to Play</h2>
             <p>Goal is to collect as much points as you can!
                 <hr>
-                <h4>Getting points</h4>
+                <h3>Getting points</h3>
                 <p>Each time frog reaches the water across the street without being struck by an enemy you get<span class="numbers"> 10 points</span>!</p>
                 <p><img src="images/coll-fly.svg" class="coll-img" alt="fly">Each time frog collects a fly, you get <span class="numbers"> 10 points</span>!</p>
                 <p><img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly">Each time frog collects a dragonfly, <span class="numbers"> 20 points</span></p>
                 <p><img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly">Each time frog collects a butterfly, <span class="numbers">30 points</span>!</p>
                 <p><img src="images/heart.svg" alt="heart-life" class="heart">Each time frog collects a heart, you get <span class="numbers"> an extra life plus 5 points</span>!</p>
                 <hr>
-                <h4>Moving around</h4>
+                <h3>Moving around</h3>
                 <p> Press
                     <span>
                     <i class="fa fa-arrow-circle-up"></i></span>
@@ -87,7 +87,7 @@
                     <span><i class="fa fa-arrow-circle-right"></i></span> on your keyboard to move around</p>
                 <p><img src="images/obstacle.svg" alt="obstacle" class="coll-img"> Be wary of the obstacles! You shall not pass them!</p>
                 <hr>
-                <h4>Level UP</h4>
+                <h3>Level UP</h3>
                 <p>Your progress is being tracked trough levels. The more more points you collect - heigher you go!</p>
                 <hr>
                 <h3>Good luck!</h3>
@@ -98,24 +98,24 @@
     </div>
 
     <!--game over modal-->
-    <div id="modal-gameover" class="modal">
+    <div id="modal-gameover" class="modal valign-wrapper">
         <div class="modal-content">
-            <h2>GAME OVER!</h2>
-            <p>Your stats:
+            <h2 class="center-align">GAME OVER!</h2>
+            <h3 class="center-align">Your stats</h3>
+            <p>
+                <p>Level reached: <span class="numbers" id="final-level">0</span></p>
+                <p>Score: <span class="numbers" id="final-score">0</span></p>
+                <p>Water reached <span class="numbers" id="final-score-water">0</span> times</p>
+                <p>Total items: <span class="numbers" id="final-collected">0</span></p>
                 <p>
-                    <p>Level reached: <span class="numbers" id="final-level">0</span></p>
-                    <p>Score: <span class="numbers" id="final-score">0</span></p>
-                    <p>Water reached <span class="numbers" id="final-score-water">0</span> times</p>
-                    <p>Total items: <span class="numbers" id="final-collected">0</span></p>
-                    <p>
-                        <img src="images/coll-fly.svg" class="coll-img" alt="fly"> collected: <span class="numbers" id="final-fly-coll">0</span>
-                    </p>
-                    <p>
-                        <img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly"> collected: <span class="numbers" id="final-dragonfly-coll">0</span>
-                    </p>
-                    <p>
-                        <img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly"> collected: <span class="numbers" id="final-butterfly-coll">0</span>
-                    </p>
+                    <img src="images/coll-fly.svg" class="coll-img" alt="fly"> collected: <span class="numbers" id="final-fly-coll">0</span>
+                </p>
+                <p>
+                    <img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly"> collected: <span class="numbers" id="final-dragonfly-coll">0</span>
+                </p>
+                <p>
+                    <img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly"> collected: <span class="numbers" id="final-butterfly-coll">0</span>
+                </p>
         </div>
         <div class="modal-footer">
             <button id="replay" class="waves-effect waves-light btn">Play again!</button>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="levels">
                     <h4>Level</h4>
-                    <p class="numbers" id="level">0</p>
+                    <p class="numbers" id="level">EGG</p>
                 </div>
             </div>
         </section>

@@ -183,24 +183,30 @@ class Player {
     levelUp() {
         if (this.score <= 50) {
             levels.textContent = "EGG";
+            levelsFin.textContent = "EGG";
         } else if (this.score > 50 && this.score <= 100) {
             levels.textContent = "TADPOLE";
+            levelsFin.textContent = "TADPOLE";
         } else if (this.score > 100 && this.score <= 250) {
             levels.textContent = "FROGLET";
+            levelsFin.textContent = "FROGLET";
         } else if (this.score > 250 && this.score <= 500) {
             levels.textContent = "FROGLLECTOR";
+            levelsFin.textContent = "FROGLLECTOR";
         } else if (this.score > 500 && this.score <= 1000) {
             levels.textContent = "FROGGERCORE";
+            levelsFin.textContent = "FROGGERCORE";
         } else if (this.score > 1000 && this.score <= 5000) {
             levels.textContent = "HARDCORE FROG";
+            levelsFin.textContent = "HARDCORE FROG";
         } else if (this.score > 5000) {
             levels.textContent = "PRO";
+            levelsFin.textContent = "PRO";
         }
     }
     //Method: player.endGame() ->  invoked when player loses all his lives; triggers a game over modal
     endGame() {
         setTimeout(function () {
-            levelsFin.innerHTML = player.level;
             collectedItemsFin.innerHTML = player.collected;
             collectedFliesFin.innerHTML = player.collectedFly;
             collectedDragonfliesFin.innerHTML = player.collectedDragonfly;
@@ -223,6 +229,7 @@ class Player {
         this.collectedFly = 0;
         this.collectedDragonfly = 0;
         this.collectedButterfly = 0;
+        levels.textContent = "EGG";
         lives.innerHTML = this.life;
         collectedItems.innerHTML = this.collected;
         collectedFlies.innerHTML = this.collectedFly;
