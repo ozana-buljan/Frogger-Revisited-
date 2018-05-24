@@ -24,8 +24,12 @@
     <!--start game modal-->
     <div id="start-modal" class="modal valign-wrapper center-align card">
         <div class="modal-overlay"></div>
+        <div class="modal-header">
+            <img src="images/frogger-banner.svg" class="logo-img" alt="frogger game logo">
+            <p>Watch out for the cars!</p>
+            <p>Traffic doesn’t stop for you.</p>
+        </div>
         <div class="modal-content valign-wrapper center-align row">
-            <img src="images/frogger-logo-extended.svg" class="logo-img" alt="frogger game logo">
             <form id="form" name="formular" class="row">
                 <h2 class="valign-wrapper center-align col s12">Choose your Frog</h2>
                 <div class="row">
@@ -103,32 +107,59 @@
         <div class="modal-content">
             <h2 class="center-align">GAME OVER!</h2>
             <h3 class="center-align">Your stats</h3>
-            <p>
-                <p>Level reached: <span class="numbers" id="final-level">0</span></p>
-                <p>Score: <span class="numbers" id="final-score">0</span></p>
-                <p>Water reached <span class="numbers" id="final-score-water">0</span> times</p>
-                <p>Total items: <span class="numbers" id="final-collected">0</span></p>
-                <p>
-                    <img src="images/coll-fly.svg" class="coll-img" alt="fly"> collected: <span class="numbers" id="final-fly-coll">0</span>
-                </p>
-                <p>
-                    <img src="images/coll-dragonfly.svg" class="coll-img" alt="dragonfly"> collected: <span class="numbers" id="final-dragonfly-coll">0</span>
-                </p>
-                <p>
-                    <img src="images/coll-butterfly.svg" class="coll-img" alt="butterfly"> collected: <span class="numbers" id="final-butterfly-coll">0</span>
-                </p>
-        </div>
-        <div class="modal-footer">
-            <button id="replay" class="waves-effect waves-light btn">Play again!</button>
+            <hr>
+            <div class="final-score-tab row">
+
+                <div class="finals col s4 card center-align">
+                    <p class="center-align">Level reached: </p>
+                    <p class="numbers center-align" id="final-level">0</p>
+
+                </div>
+
+                <div class="finals col s4 card center-align">
+                    <p class="center-align">Score: </p>
+                    <p class="numbers center-align" id="final-score">0</p>
+                </div>
+
+                <div class="finals col s4 card center-align">
+                    <p class="center-align">Water reached times</p>
+                    <p class="numbers center-align" id="final-score-water">0</p>
+                </div>
+
+                <div class="finals col s12 card center-align">
+                    <p class="center-align">Total items: </p>
+                    <p class="numbers center-align" id="final-collected">0</p>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="final-flies col s12 center-align">
+                    <div class="row">
+                        <div class="col s4 card">
+                            <img src="images/coll-fly.svg" class="coll-img fly" alt="fly">
+                            <p>collected:
+                                <span class="numbers" id="final-fly-coll">0</span></p>
+                        </div>
+                        <div class="col s4 card center-align">
+                            <img src="images/coll-dragonfly.svg" class="coll-img dragonfly" alt="dragonfly">
+                            <p>collected: <span class="numbers" id="final-dragonfly-coll">0</span></p>
+                        </div>
+                        <div class="col s4 card center-align">
+                            <img src="images/coll-butterfly.svg" class="coll-img butterfly" alt="butterfly">
+                            <p>collected: <span class="numbers" id="final-butterfly-coll">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="replay" class="waves-effect waves-light btn">Play again!</button>
+            </div>
         </div>
     </div>
-
     <div class="container card">
 
         <!--HEADER-->
         <header class="row valign-wrapper center-align card">
-            <img src="images/frogger-logo.svg" class="logo-img col s3" alt="frogger game logo">
-            <h2 class="col s9 right-align">Frogger</h2>
+            <img src="images/frogger-banner.svg" class="logo-img col s12" alt="frogger game logo">
         </header>
 
 
@@ -139,8 +170,8 @@
                     <p class="numbers" id="score">0</p>
                 </div>
                 <div class="scores-water card">
-                    <p>Water reached </p>
-                    <p><span class="numbers" id="score-water">0</span> times</p>
+                    <h4>Water reached</h4>
+                    <h4><span class="numbers" id="score-water">0</span> times</h4>
                 </div>
             </div>
             <div class="collectibles col s4 card">
