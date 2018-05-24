@@ -20,13 +20,19 @@ h4 {
     margin: 0.1em auto;
 }
 
-p {
-    display: block;
-}
+
 
 img {
     max-width: 100%;
     height: auto;
+}
+
+a {
+    color: #84a93f;
+}
+
+a:hover {
+    color: #62883b;
 }
 
 /***--- --- --- HEADER --- --- ---***/
@@ -159,6 +165,13 @@ canvas {
 
 footer {
     height: 5vh;
+    background-color: #454c53 !important;
+    color: ghostwhite;
+}
+
+.how-to {
+    margin: 1em;
+    width: 95%;
 }
 
 /***--- --- --- MODALS --- --- ---***/
@@ -231,6 +244,10 @@ footer {
     z-index: 200;
 }
 
+#start-game {
+    width: 75%;
+}
+
 /*--GAME OVER MODAL--*/
 
 .finals {
@@ -239,6 +256,13 @@ footer {
     max-height: 10vh;
     justify-content: center;
     align-content: center;
+}
+
+/*--HOW-TO MODAL--*/
+
+.understood {
+    width: 100%;
+    margin: 1em;
 }
 
 /*-------------THE ᕕ( ᐛ )ᕗ END-----------------*/
