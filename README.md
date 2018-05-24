@@ -3,7 +3,9 @@ My take on an oldschool Frogger game. Project is done as a part of Udacity's FEN
 
 
 ## Play!
-Demo:
+Demo:https://ozana-buljan.github.io/frogger-revisited/
+
+![Frogger demo](frogger-revisited/images/Frogger-demo.PNG)
 
 ## How to play?
  Goal is to collect as much points as you can!
