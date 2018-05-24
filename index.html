@@ -22,7 +22,8 @@
 
     <!--MODALS-->
     <!--start game modal-->
-    <div id="start-modal" class="modal valign-wrapper center-align">
+    <div id="start-modal" class="modal valign-wrapper center-align card">
+        <div class="modal-overlay"></div>
         <div class="modal-content valign-wrapper center-align row">
             <img src="images/frogger-logo-extended.svg" class="logo-img" alt="frogger game logo">
             <form id="form" name="formular" class="row">
@@ -122,27 +123,27 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container card">
 
         <!--HEADER-->
-        <header class="row valign-wrapper center-align">
+        <header class="row valign-wrapper center-align card">
             <img src="images/frogger-logo.svg" class="logo-img col s3" alt="frogger game logo">
             <h2 class="col s9 right-align">Frogger</h2>
         </header>
 
 
-        <section class="score-panel row valign-wrapper center-align">
+        <section class="score-panel row valign-wrapper center-align card">
             <div class="scores col s4">
-                <div class="scores-board">
+                <div class="scores-board card">
                     <h4>Score: </h4>
                     <p class="numbers" id="score">0</p>
                 </div>
-                <div class="scores-water">
+                <div class="scores-water card">
                     <p>Water reached </p>
                     <p><span class="numbers" id="score-water">0</span> times</p>
                 </div>
             </div>
-            <div class="collectibles col s4">
+            <div class="collectibles col s4 card">
                 <div class="total">
                     <h4>Total items: </h4>
                     <p class="numbers" id="collected">0</p>
@@ -161,14 +162,13 @@
                 </div>
             </div>
             <div class="life col s4">
-                <div class="life-no">
+                <div class="life-no card">
                     <h4>Lives: </h4>
-                    <img src="images/heart.svg" alt="heart-life" class="heart">
-                    <p>X
+                    <p><img src="images/heart.svg" alt="heart-life" class="heart"> x
                         <span class="numbers" id="lives">3</span>
                     </p>
                 </div>
-                <div class="levels">
+                <div class="levels card">
                     <h4>Level</h4>
                     <p class="numbers" id="level">EGG</p>
                 </div>
@@ -176,10 +176,10 @@
         </section>
 
         <!--GAME-->
-        <div id="game" class="valign-wrapper center-align"></div>
+        <div id="game"></div>
 
         <!--FOOTER-->
-        <footer class="row">
+        <footer class="row card">
             <section class="credits col s9 center-align">
                 <p>© 2018 <a href="https://github.com/ozana-buljan">Ozana Buljan</a><span class="foot-cred-span"> -.-Udacity FEND project-.-</span></p>
             </section>

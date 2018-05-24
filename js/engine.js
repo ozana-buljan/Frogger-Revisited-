@@ -23,6 +23,7 @@ let Engine = (function (global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    canvas.classList.add('card');
     window.start = init;
 
 

@@ -6,81 +6,99 @@
 
 html,
 body {
-
-    width: 100vw;
-    height: 100vh;
     margin: 0 auto;
     padding: 0;
+    line-height: 1em;
 }
 
-h4,
+h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1em;
+    margin: 1.52rem 0 .912rem 0;
+}
+
 p,
-span {
-    font-size: 1em;
+span {}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /***--- --- --- HEADER --- --- ---***/
 
 header {
-    height: 7.5vh;
+    height: 7vh;
 }
 
 /***--- --- --- MAIN --- --- ---***/
 
+.container {
+    margin: 0 auto !important;
+    height: 100vh;
+}
+
 /*--SCORE PANEL--*/
 
-.score-panel {}
+.score-panel {
+    height: 25vh;
+}
 
 
 .collectibles {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
+    height: 22vh;
+    padding: 0;
+    margin: 0;
 }
 
 .total {
     grid-column: 1/4;
     grid-row: 1;
-    height: 10vh;
+    height: 5vh;
 }
 
 .fly {
     grid-column: 1;
     grid-row: 2;
-    height: 10vh;
 }
 
 .dragonfly {
     grid-column: 2;
     grid-row: 2;
-    height: 10vh;
+
 }
 
 .butterfly {
     grid-column: 3;
     grid-row: 2;
-    height: 10vh;
+
 }
 
 .scores,
 .life {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    height: 20vh;
+
 }
 
 .scores-board,
 .life-no {
     grid-row: 1;
+    height: 10vh;
 }
 
 .scores-water,
 .levels {
     grid-row: 2;
+    height: 10vh;
 }
 
 .logo-img {
-    height: 10vh;
+    height: 5vh;
 }
 
 .coll-img {
@@ -92,18 +110,41 @@ header {
 .numbers {
     font-weight: 700;
     font-size: 2em;
-    line-height: 0.5em;
 }
 
 .heart {
     display: inline-block;
+    height: 3em;
+}
+
+.collectibles,
+.total,
+.fly,
+.dragonfly,
+butterfly {
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    position: relative;
 }
 
 /*--GAME--*/
 
+#game {
+    height: 60vh;
+}
+
 canvas {
-    display: block !important;
-    margin: 0 auto;
+    display: block;
+    margin: 0 auto !important;
+    align-self: center;
+    position: relative;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
 }
 
 /***--- --- --- FOOTER --- --- ---***/
@@ -114,7 +155,7 @@ footer {
 
 /***--- --- --- MODALS --- --- ---***/
 
-..modal {
+.modal {
     display: none;
     position: fixed;
     left: 0;
@@ -129,8 +170,23 @@ footer {
     will-change: top, opacity;
 }
 
+.modal-overlay {
+    position: fixed;
+    z-index: 999;
+    top: -25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #000;
+    display: none;
+    will-change: opacity;
+}
+
 .modal-content > .coll-img {
     height: 5vh;
+    z-index: 1000;
 }
 
 /*--START GAME MODAL--*/
@@ -144,6 +200,10 @@ footer {
     pointer-events: visible !important;
 }
 
+#start-modal,
+#modal-gameover {
+    z-index: 200;
+}
 
 
 /*-------------THE ᕕ( ᐛ )ᕗ END-----------------*/
