@@ -8,6 +8,24 @@ const START_Y = 404; // Y Start-Position of the player,
 const lives = document.querySelector("#lives");
 const levels = document.querySelector("#level");
 const collectedItems = document.querySelector("#collected");
+const collectedFlies = document.querySelector("#fly-coll");
+const collectedDragonflies = document.querySelector("#dragonfly-coll");
+const collectedButterflies = document.querySelector("#butterfly-coll");
+const scoreboard = document.querySelector("#score");
+const scoreboardWater = document.querySelector("#score-water");
+//modals
+const startModal = document.querySelector("#start-modal");
+const startBtn = document.querySelector("#start-game");
+const gameoverModal = document.querySelector("#modal-gameover");
+const replayBtn = document.querySelector("#replay");
+//game-over modal final scores
+const levelsFin = document.querySelector("#final-level");
+const collectedItemsFin = document.querySelector("#final-collected");
+const collectedFliesFin = document.querySelector("#final-fly-coll");
+const collectedDragonfliesFin = document.querySelector("#final-dragonfly-coll");
+const collectedButterfliesFin = document.querySelector("#final-butterfly-coll");
+const scoreboardFin = document.querySelector("#final-score");
+const scoreboardWaterFin = document.querySelector("#final-score-water");
 
 
 /* *** *** *** *** start values *** *** *** *** */
@@ -139,9 +157,9 @@ class Player {
     //Method: player.reachWater() -> invoked when player reaches the other side of canvas; updates score, reaching water score, level and returns player to a starting position
     reachWater() {
         this.score += 10;
-        document.querySelector("#score").textContent = this.score;
+        scoreboard.textContent = this.score;
         this.scoreWater += 1;
-        document.querySelector("#score-water").textContent = this.scoreWater;
+        scoreboardWater.textContent = this.scoreWater;
         this.x = START_X;
         this.y = START_Y;
         obstacle.newObst = true;
@@ -182,7 +200,14 @@ class Player {
     //Method: player.endGame() ->  invoked when player loses all his lives; triggers a game over modal
     endGame() {
         setTimeout(function () {
-            confirm("Sorry, you loose. Try it again!");
+            levelsFin.innerHTML = player.level;
+            collectedItemsFin.innerHTML = player.collected;
+            collectedFliesFin.innerHTML = player.collectedFly;
+            collectedDragonfliesFin.innerHTML = player.collectedDragonfly;
+            collectedButterfliesFin.innerHTML = player.collectedButterfly;
+            scoreboardFin.innerHTML = player.score;
+            scoreboardWaterFin.textContent = player.scoreWater;
+            player.modalShow(gameoverModal, replayBtn);
             player.reset();
             start();
         }, 500);
@@ -200,22 +225,24 @@ class Player {
         this.collectedButterfly = 0;
         lives.innerHTML = this.life;
         collectedItems.innerHTML = this.collected;
-        document.querySelector("#fly-coll").innerHTML = this.collectedFly;
-        document.querySelector("#dragonfly-coll").innerHTML = this.collectedDragonfly;
-        document.querySelector("#butterfly-coll").innerHTML = this.collectedButterfly;
-        document.querySelector("#score").innerHTML = this.score;
-        document.querySelector("#score-water").innerHTML = this.scoreWater;
-        player.startModalShow();
+        collectedFlies.innerHTML = this.collectedFly;
+        collectedDragonflies.innerHTML = this.collectedDragonfly;
+        collectedButterflies.innerHTML = this.collectedButterfly;
+        scoreboard.innerHTML = this.score;
+        scoreboardWater.innerHTML = this.scoreWater;
+        this.modalShow(startModal, startBtn);
     }
     //Method: player.startModalShow() ->  opens start modal
-    startModalShow() {
-        document.querySelector("#start-modal").style.display = "block";
-        const startBtn = document.querySelector("#start-game");
-        startBtn.addEventListener("click", player.startModalHide);
+    modalShow(myModal, btn) {
+        myModal.style.display = "block";
+        let activeModal = myModal;
+        btn.addEventListener("click", function () {
+            player.modalHide(activeModal);
+        });
     }
     //Method: player.startModalHide() ->  closes start modal
-    startModalHide() {
-        document.querySelector("#start-modal").style.display = "none";
+    modalHide(myModal) {
+        myModal.style.display = "none";
         player.choosePlayer();
     }
     //Method: player.choosePlayer() ->  takes value of chosen radio button in for and adjustes the image of chosen player
@@ -409,10 +436,10 @@ function collisionItems() {
                     break;
             }
             collectedItems.innerHTML = player.collected;
-            document.querySelector("#fly-coll").innerHTML = player.collectedFly;
-            document.querySelector("#dragonfly-coll").innerHTML = player.collectedDragonfly;
-            document.querySelector("#butterfly-coll").innerHTML = player.collectedButterfly;
-            document.querySelector("#score").innerHTML = player.score;
+            collectedFlies.innerHTML = player.collectedFly;
+            collectedDragonflies.innerHTML = player.collectedDragonfly;
+            collectedButterflies.innerHTML = player.collectedButterfly;
+            scoreboard.innerHTML = player.score;
             lives.innerHTML = player.life;
             allItems[i].time_now = 0;
             allItems[i].time_target = 0;
@@ -422,7 +449,7 @@ function collisionItems() {
 
 };
 
-/* *** *** *** *** *** OBJECTS *** *** *** *** *** */
+/* *** *** *** *** *** OBJECTS & ARRAYS *** *** *** *** *** */
 
 // Creating new enemy objects and an array to hold them
 let enemyRow1 = new Enemy(60);
