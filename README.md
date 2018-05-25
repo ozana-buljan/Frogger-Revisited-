@@ -17,8 +17,10 @@ Play live demo: https://ozana-buljan.github.io/frogger-revisited/
 *   Download the repository: click download ZIP on the right of the screen and extract the zip file to your computer or clone the repository using Git.
 *   Navigate to where you unzipped the file or cloned the repository.
 *   Double-click index.html to open the game in your browser.
-### The looks
-![Frogger revisited UI](frogger-revisited/images/Frogger-demo.PNG)
+
+### The Looks
+
+![Frogger UI](https://raw.githubusercontent.com/ozana-buljan/frogger-revisited/master/images/Frogger-demo.PNG)
 
 ## How to play?
  Goal is to collect as much points as you can!
