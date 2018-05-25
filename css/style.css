@@ -76,15 +76,15 @@ header {
 .fly,
 .dragonfly,
 .butterfly {
-    max-height: 7vh;
+    max-height: 5vh;
+    padding: 0.5em;
 }
 
 .scores-board,
 .scores-water,
 .life-no,
 .levels {
-    height: auto;
-    max-height: 6vh;
+    height: 6vh;
     margin: 0.5vh;
     padding: 0.5em;
 }
@@ -105,9 +105,8 @@ header {
 #lives,
 .numbers {
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 3vh;
     margin: 0.1em auto;
-    padding: 0.5em;
 }
 
 .coll-img {
@@ -121,86 +120,6 @@ header {
     height: 2.5em;
     margin: 0 0.5vh;
 }
-
-
-/*
-.total {
-    grid-column: 1/4;
-    grid-row: 1;
-    max-height: 4vh;
-}
-
-.fly {
-    grid-column: 1;
-    grid-row: 2;
-    max-height: 8vh;
-}
-
-.dragonfly {
-    grid-column: 2;
-    grid-row: 2;
-    max-height: 8vh;
-}
-
-.butterfly {
-    grid-column: 3;
-    grid-row: 2;
-    max-height: 8vh;
-}
-
-.scores {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-
-}
-
-.scores-board {
-    grid-row: 1;
-    height: 5vh;
-    margin: 0.5vh;
-}
-.scores-board ,
-.scores-water,
-.levels {
-    height: 5vh;
-    margin: 0.5vh;
-}
-
-
-.coll-img {
-    max-height: 5vh;
-}
-
-#score-water,
-#lives,
-.numbers {
-    font-weight: 700;
-    font-size: 1.5em;
-    margin: 0.1em auto;
-    padding: 0.3em;
-}
-
-.life-no {
-    height: 5vh;
-}
-
-.heart {
-    display: inline-block;
-    height: 2em;
-    margin: 0.5vh;
-}
-
-.collectibles,
-.total,
-.fly,
-.dragonfly,
-butterfly {
-    padding: 0;
-    margin: 0;
-    align-self: center;
-    position: relative;
-}
-*/
 
 /*--GAME--*/
 
