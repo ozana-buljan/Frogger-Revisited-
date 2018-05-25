@@ -1,7 +1,8 @@
-# Udacity FEND- Project #4:  Arcade Game
-My take on an oldschool Frogger game. Project is done as a part of Udacity's FEND program.
+# Udacity FEND- Project #4:  FROGGER (revisited)
+My take on an oldschool Frogger arcade game. Project is done as a part of Udacity's FEND program.
 
-DESKTOP only.
+DESKTOP ONLY!
+Hope to make it work on mobile soon, though.
 
 Hope you'll find it entertaining!
 
