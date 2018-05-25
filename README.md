@@ -1,11 +1,20 @@
 # Udacity FEND- Project #4:  Arcade Game
 My take on an oldschool Frogger game. Project is done as a part of Udacity's FEND program.
 
+DESKTOP only.
+
+Hope you'll find it entertaining!
+
 
 ## Play!
-Demo:https://ozana-buljan.github.io/frogger-revisited/
 
-![Frogger demo](frogger-revisited/images/Frogger-demo.PNG)
+###Demo
+Play live demo: https://ozana-buljan.github.io/frogger-revisited/
+
+###Installation instructions
+*   Download the repository: click download ZIP on the right of the screen and extract the zip file to your computer or clone the repository using Git.
+*   Navigate to where you unzipped the file or cloned the repository.
+*   Double-click index.html to open the game in your browser.
 
 ## How to play?
  Goal is to collect as much points as you can!
@@ -28,16 +37,16 @@ Player should be wary of the obstacles! They shall not pass!
 Player's progress is being tracked trough levels. The more more points they collect - heigher they go!
 
 ## Bugs
-None that I know of (yet).
+*   Responsiveness is iffy - as I'm still testing the game on as many devices and browswers as possible.
 
 
 ## To Do
 * Make game looking good and working on phones!
 * ENEMIES - > add different types of vechicles
 * LEVELS -> add more complexity:
- - cars go from both sides
- - speed of cars increases with level
- - add another row for each level
+    -   cars go from both sides
+    -   speed of cars increases with level
+    -   add another row for each level
 
 * sound and music
 
